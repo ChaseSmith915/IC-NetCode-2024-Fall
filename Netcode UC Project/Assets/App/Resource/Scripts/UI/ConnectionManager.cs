@@ -25,7 +25,6 @@ public class ConnectionManager : NetworkBehaviour
         {
             _mySpawnController.SpawnAllPlayers();
             _startBttn.gameObject.SetActive(false);
-            _startBttn.gameObject.SetActive(true);
         }
     }
 
@@ -33,6 +32,7 @@ public class ConnectionManager : NetworkBehaviour
     {
         NetworkManager.Singleton.StartHost();
         _connectionBttnGroup.SetActive(false);
+        _startBttn.gameObject.SetActive(true);
     }
 
 
