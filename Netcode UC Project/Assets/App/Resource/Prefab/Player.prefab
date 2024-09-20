@@ -14,8 +14,14 @@ GameObject:
   - component: {fileID: 2528299669213934225}
   - component: {fileID: 7537896358610892203}
   - component: {fileID: 8045956907994129242}
+<<<<<<< HEAD
+  - component: {fileID: 2862508418521691614}
+  - component: {fileID: 2530183712596168403}
+  - component: {fileID: 5032303690993690229}
+=======
   - component: {fileID: 3402843704351666246}
   - component: {fileID: 2862508418521691614}
+>>>>>>> c5a9ab3552d92cf8ee81e36e3a2477d05d40579f
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -67,7 +73,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< HEAD
+  - {fileID: 2100000, guid: 8c0139b2f71ff1e4aa3f17e941e32576, type: 2}
+=======
   - {fileID: 2100000, guid: acd51eca7d0153640a9a4502bdba7917, type: 2}
+>>>>>>> c5a9ab3552d92cf8ee81e36e3a2477d05d40579f
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,7 +170,11 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+<<<<<<< HEAD
+--- !u!114 &2862508418521691614
+=======
 --- !u!114 &3402843704351666246
+>>>>>>> c5a9ab3552d92cf8ee81e36e3a2477d05d40579f
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,7 +183,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6266488561812146466}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
+  m_Script: {fileID: 11500000, guid: 6205cd9747f305e4488de100625ce12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2530183712596168403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266488561812146466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a366160eb401ae344bbd69811d5520de, type: 3}
+=======
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+>>>>>>> c5a9ab3552d92cf8ee81e36e3a2477d05d40579f
   m_Name: 
   m_EditorClassIdentifier: 
   UseUnreliableDeltas: 0
@@ -191,7 +221,11 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+<<<<<<< HEAD
+--- !u!114 &5032303690993690229
+=======
 --- !u!114 &2862508418521691614
+>>>>>>> c5a9ab3552d92cf8ee81e36e3a2477d05d40579f
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,7 +234,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6266488561812146466}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+=======
   m_Script: {fileID: 11500000, guid: 6205cd9747f305e4488de100625ce12b, type: 3}
+>>>>>>> c5a9ab3552d92cf8ee81e36e3a2477d05d40579f
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7577463540450936383
@@ -265,7 +303,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< HEAD
+  - {fileID: 2100000, guid: 6662d2c992281fb489dec7a006660bda, type: 2}
+=======
   - {fileID: 2100000, guid: 5798ceba4cde02442a4d05fcca12f892, type: 2}
+>>>>>>> c5a9ab3552d92cf8ee81e36e3a2477d05d40579f
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
