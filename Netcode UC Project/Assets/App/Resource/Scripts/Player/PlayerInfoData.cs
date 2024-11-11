@@ -7,10 +7,11 @@ using Unity.Collections;
 
 public struct PlayerInfoData : INetworkSerializable, IEquatable<PlayerInfoData>
 {
-    private ulong _clientId;
-    private FixedString64Bytes _name;
-    private bool _isPlayerConnected;
+    public ulong _clientId;
+    public FixedString64Bytes _name;
+    public bool _isPlayerConnected;
     public Color _colorId;
+    public bool _isPlayerReady;
 
     public  PlayerInfoData(ulong id)
     {
@@ -18,6 +19,7 @@ public struct PlayerInfoData : INetworkSerializable, IEquatable<PlayerInfoData>
         _name = "";
         _isPlayerConnected = false;
         _colorId = Color.magenta;
+        _isPlayerReady = false;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
