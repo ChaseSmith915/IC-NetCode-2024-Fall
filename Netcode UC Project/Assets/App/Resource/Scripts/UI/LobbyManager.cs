@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,43 @@ public class LobbyManager : NetworkBehaviour
 
     private bool isReady = false;
 
+    private void Start()
+    {
+        _myServerID = NetworkManager.ServerClientId;
+
+        if(ServerIsHost)
+        {
+            rdyTxt.text = "Waiting for Players";
+            _readyBttn.gameObject.SetActive(false);
+        }
+        else
+        {
+            rdyTxt.text = "Not Ready";
+            _readyBttn.gameObject.SetActive(true);
+        }
+
+        _networkPlayers._allConnectedPlayers.OnListChanged += NetPlayersChanged;
+        _leaveBttn.onClick.AddListener(LeaveBttnClick);
+        _readyBttn.onClick.AddListener(ClientRdyBttnToggle);
+    }
+
+    private void ClientRdyBttnToggle()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void LeaveBttnClick()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void NetPlayersChanged(NetworkListEvent<PlayerInfoData> changeEvent)
+    {
+        Debug.Log("Net players has changed!");
+        PopulateLabels();
+    }
+
+    [ContextMenu("PopulateLabel")]
     private void PopulateLabels()
     {
         ClearPlayerPanel();
@@ -40,6 +78,42 @@ public class LobbyManager : NetworkBehaviour
                 _playerLabel.SetKickActive(true);
                 _readyBttn.gameObject.SetActive(false);
             }
+            else
+            {
+                _playerLabel.SetKickActive(false);
+                _readyBttn.gameObject.SetActive(true);
+            }
+
+            _playerLabel.SetPLayerLabelName(playerData._clientId);
+            _playerLabel.SetReady(playerData._isPlayerReady);
+            _playerLabel.SetPlayerColor(playerData._colorId);
+            _playerPanels.Add(newPlayerPanel);
+
+            if(playerData._isPlayerReady == false) 
+            {
+                allReady = false;
+            }
+        }
+
+        if(IsServer) 
+        {
+            if(allReady)
+            {
+                if(_networkPlayers._allConnectedPlayers.Count > 1)
+                {
+                    rdyTxt.text = "Ready to start";
+                    _startBttn.gameObject.SetActive(true);
+                }
+                else
+                {
+                    rdyTxt.text = "Empty lobby";
+                }
+            }
+        }
+        else
+        {
+            _startBttn.gameObject.SetActive(false);
+            rdyTxt.text = "waiting for ready players";
         }
     }
 
@@ -50,6 +124,11 @@ public class LobbyManager : NetworkBehaviour
 
     private void ClearPlayerPanel()
     {
-        throw new NotImplementedException();
+        foreach(GameObject panel in _playerPanels)
+        {
+            Destroy(panel);
+        }
+
+        _playerPanels.Clear();
     }
 }

@@ -8,7 +8,7 @@ using Unity.Collections;
 public struct PlayerInfoData : INetworkSerializable, IEquatable<PlayerInfoData>
 {
     public ulong _clientId;
-    public FixedString64Bytes _name;
+    private FixedString64Bytes _name;
     public bool _isPlayerConnected;
     public Color _colorId;
     public bool _isPlayerReady;
