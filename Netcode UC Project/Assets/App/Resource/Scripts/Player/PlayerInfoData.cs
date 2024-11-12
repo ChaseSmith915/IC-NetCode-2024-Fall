@@ -9,17 +9,15 @@ public struct PlayerInfoData : INetworkSerializable, IEquatable<PlayerInfoData>
 {
     public ulong _clientId;
     private FixedString64Bytes _name;
-    public bool _isPlayerConnected;
-    public Color _colorId;
     public bool _isPlayerReady;
+    public Color _colorId;
 
     public  PlayerInfoData(ulong id)
     {
         _clientId = id;
         _name = "";
-        _isPlayerConnected = false;
-        _colorId = Color.magenta;
         _isPlayerReady = false;
+        _colorId = Color.magenta;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
@@ -30,21 +28,21 @@ public struct PlayerInfoData : INetworkSerializable, IEquatable<PlayerInfoData>
             reader.ReadValueSafe(out _clientId);
             reader.ReadValueSafe(out _name);
             reader.ReadValueSafe(out _colorId);
-            reader.ReadValueSafe(out _isPlayerConnected);
+            reader.ReadValueSafe(out _isPlayerReady);
         }
         else
         {
             var writer = serializer.GetFastBufferWriter();
-            writer.WriteValueSafe(_colorId);
             writer.WriteValueSafe(_clientId);
             writer.WriteValueSafe(_name);
-            writer.WriteValueSafe(_isPlayerConnected);
+            writer.WriteValueSafe(_colorId);
+            writer.WriteValueSafe(_isPlayerReady);
         }
     }
 
     public bool Equals(PlayerInfoData other)
     {
-        return _clientId == other._clientId && _name.Equals(other._name) && _isPlayerConnected == other._isPlayerConnected && _colorId.Equals(other._colorId);
+        return _clientId == other._clientId && _name.Equals(other._name) && _isPlayerReady == other._isPlayerReady && _colorId.Equals(other._colorId);
     }
 
     public override bool Equals(object obj)
