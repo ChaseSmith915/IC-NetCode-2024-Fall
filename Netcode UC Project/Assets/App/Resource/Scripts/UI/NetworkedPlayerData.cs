@@ -28,11 +28,12 @@ public class NetworkedPlayerData : NetworkBehaviour
     {
         base.OnNetworkSpawn();
 
-        if(IsServer)
+        if (!IsServer)
         {
-            NetworkManager.Singleton.OnConnectionEvent += OnConnectionEvents;
-            _serverLocalID = NetworkManager.LocalClientId;
+            return;
         }
+        NetworkManager.Singleton.OnConnectionEvent += OnConnectionEvents;
+        _serverLocalID = NetworkManager.LocalClientId;
     }
 
     public override void OnNetworkDespawn()
@@ -54,6 +55,7 @@ public class NetworkedPlayerData : NetworkBehaviour
 
         if(eventData.EventType == ConnectionEvent.ClientDisconnected)
         {
+            RemovePlayerData(FindPlayerInfoData(eventData.ClientId));
             _players--;
         }
     }
@@ -103,7 +105,7 @@ public class NetworkedPlayerData : NetworkBehaviour
         return myMach;
     }
 
-    private void UpdateReadyClient(ulong clientID, bool isReady)
+    public void UpdateReadyClient(ulong clientID, bool isReady)
     {
         int idx = FindPlayerIndex(clientID);
 
