@@ -16,8 +16,12 @@ public class ServerPlayerMovement : NetworkBehaviour
     [SerializeField] private float _pSpeed;
     [SerializeField] private Transform _pTransform;
 
+    [SerializeField] private BulletSpawner _bulletSpawner;
+
     public CharacterController CC;
     private MyPlayerInputAction _playerInput;
+
+    Vector3 moveDirection = Vector3.zero;
     void Start()
     {
         _playerInput = new MyPlayerInputAction();
@@ -39,15 +43,20 @@ public class ServerPlayerMovement : NetworkBehaviour
         {
             Move(moveInput, isPunching, isSprinting, isJumping);
         }
-        else if (IsClient)
+        else if (IsClient && !IsHost)
         {
             MoveServerRPC(moveInput, isPunching, isSprinting, isJumping);
+        }
+
+        if(isPunching)
+        {
+            _bulletSpawner.FireProjectileRPC();
         }
     }
 
     private void Move(Vector2 input, bool isPunching, bool isSprinting, bool isJumping)
     {
-        Vector3 moveDirection = input.x * _pTransform.right + input.y * _pTransform.forward;
+        moveDirection = new Vector3(input.x, 0f, input.y);
 
         _myAnimator.SetBool("IsWalking", moveDirection.x != 0 || moveDirection.y != 0);
 
@@ -65,6 +74,8 @@ public class ServerPlayerMovement : NetworkBehaviour
 
             CC.Move(moveDirection * _pSpeed * Time.deltaTime);
         }
+
+        transform.forward = -moveDirection;
     }
 
     [Rpc(SendTo.Server)]
